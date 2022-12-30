@@ -34,6 +34,7 @@ namespace Authorization
             MessageBoxResult res = MessageBoxResult.Yes;
             if (Login.Text == _login && Password.Password == _password)
             {
+                //Success auntification
                 MessageBox.Show("Succesfully", "Authorization", MessageBoxButton.OK);
             }
             else
