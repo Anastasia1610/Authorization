@@ -35,8 +35,8 @@ namespace Authorization
 
             public Account(string login, string password)
             {
-                this.login = login;
-                this.password = password;
+                Login = login;
+                Password = password;
             }
 
             public string Login
