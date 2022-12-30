@@ -28,6 +28,20 @@ namespace Authorization
         string _login = "Anastasia";
         string _password = "12345";
 
+        public class Account
+        {
+            public string login;
+            public string password;
+
+            public Account(string login, string password)
+            {
+                this.login = login;
+                this.password = password;
+            }
+        }
+
+}
+
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
            
