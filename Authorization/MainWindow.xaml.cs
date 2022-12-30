@@ -47,7 +47,23 @@ namespace Authorization
                 }
                 set
                 {
-                    login = value;
+                    bool flag = false;
+                    if (login.Length > 4 && login.Length < 16)
+                    {
+                        string simbols = "-;%&*()!#$^~";
+                        for (int i = 0; i < simbols.Length; i++)
+                            if (login.Contains(simbols[i]))
+                            {
+                                flag = true;
+                                break;
+                            }
+                        if (!flag)
+                            login = value;
+                    }
+                    else
+                        flag = true;    
+                        
+                    if(flag) login = "undefinded";
                 }
             }
 
@@ -63,11 +79,11 @@ namespace Authorization
                 }
             }
         }
-    
+
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+
             MessageBoxResult res = MessageBoxResult.Yes;
             if (Login.Text == _login && Password.Password == _password)
             {
