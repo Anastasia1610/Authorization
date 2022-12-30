@@ -34,7 +34,7 @@ namespace Authorization
             MessageBoxResult res = MessageBoxResult.Yes;
             if (Login.Text == _login && Password.Password == _password)
             {
-                //Переход на другую страницу
+                MessageBox.Show("Succesfully", "Authorization", MessageBoxButton.OK);
             }
             else
             {
