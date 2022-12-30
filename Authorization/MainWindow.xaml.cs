@@ -30,17 +30,40 @@ namespace Authorization
 
         public class Account
         {
-            public string login;
-            public string password;
+            private string login;
+            private string password;
 
             public Account(string login, string password)
             {
                 this.login = login;
                 this.password = password;
             }
-        }
 
-}
+            public string Login
+            {
+                get
+                {
+                    return login;
+                }
+                set
+                {
+                    login = value;
+                }
+            }
+
+            public string Password
+            {
+                get
+                {
+                    return password;
+                }
+                set
+                {
+                    password = value;
+                }
+            }
+        }
+    
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
