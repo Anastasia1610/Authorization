@@ -48,6 +48,12 @@ namespace Authorization
                 set
                 {
                     bool flag = false;
+
+                    if(login.Contains("@gmail.com"))
+                        login = login.Replace("@gmail.com", "");
+                    else
+                        flag = true;
+
                     if (login.Length > 4 && login.Length < 16)
                     {
                         string simbols = "-;%&*()!#$^~";
@@ -58,7 +64,7 @@ namespace Authorization
                                 break;
                             }
                         if (!flag)
-                            login = value;
+                            login = value + "@gmail.com";
                     }
                     else
                         flag = true;    
