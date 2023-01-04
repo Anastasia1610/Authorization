@@ -25,8 +25,7 @@ namespace Authorization
             InitializeComponent();
         }
 
-        string _login = "Anastasia";
-        string _password = "12345";
+        List<Account> accounts = new List<Account>() { new Account("Anastasia@gmail.com", "Anastasia1610")}; 
 
         List<Account> accounts = new List<Account>(); 
 
@@ -133,7 +132,12 @@ namespace Authorization
         {
 
             MessageBoxResult res = MessageBoxResult.Yes;
-            if (Login.Text == _login && Password.Password == _password)
+
+            foreach (var item in accounts)
+            {
+                if(LoginField.Text == item.Login)
+                {
+                    if(PasswordField.Password == item.Password)
             {
                 //Success auntification
                 MessageBox.Show("Succesfully", "Authorization", MessageBoxButton.OK);
