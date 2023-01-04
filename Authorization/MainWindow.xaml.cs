@@ -27,8 +27,6 @@ namespace Authorization
 
         List<Account> accounts = new List<Account>() { new Account("Anastasia@gmail.com", "Anastasia1610")}; 
 
-        List<Account> accounts = new List<Account>(); 
-
         public class Account
         {
             private string login;
@@ -130,7 +128,6 @@ namespace Authorization
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-
             MessageBoxResult res = MessageBoxResult.Yes;
 
             foreach (var item in accounts)
@@ -139,7 +136,6 @@ namespace Authorization
                 {
                     if(PasswordField.Password == item.Password)
             {
-                //Success auntification
                 MessageBox.Show("Succesfully", "Authorization", MessageBoxButton.OK);
             }
             else
@@ -156,8 +152,6 @@ namespace Authorization
                     // переход на предыдущую страницу
                 }
             }
-
-
         }
 
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
