@@ -28,6 +28,8 @@ namespace Authorization
         string _login = "Anastasia";
         string _password = "12345";
 
+        List<Account> accounts = new List<Account>(); 
+
         public class Account
         {
             private string login;
@@ -151,6 +153,11 @@ namespace Authorization
                 }
             }
 
+
+        }
+
+        private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
