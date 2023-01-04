@@ -25,17 +25,17 @@ namespace Authorization
             InitializeComponent();
         }
 
-        List<Account> accounts = new List<Account>() { new Account("Anastasia@gmail.com", "Anastasia1610")}; 
+        private List<Account> accounts = new List<Account>() { new Account("Anastasia@gmail.com", "Anastasia1610") };
 
         public class Account
         {
             private string login;
             private string password;
 
-            public Account(string login, string password)
+            public Account(string log, string pswrd)
             {
-                Login = login;
-                Password = password;
+                Login = log;
+                Password = pswrd;
             }
 
             public string Login
@@ -48,16 +48,16 @@ namespace Authorization
                 {
                     bool flag = false;
 
-                    if(login.Contains("@gmail.com"))
-                        login = login.Replace("@gmail.com", "");
+                    if (value.Contains("@gmail.com"))
+                        value = value.Replace("@gmail.com", "");
                     else
                         flag = true;
 
-                    if (login.Length >= 4 && login.Length <= 16)
+                    if (value.Length >= 4 && value.Length <= 16)
                     {
                         string simbols = "-;%&*()!#$^~";
                         for (int i = 0; i < simbols.Length; i++)
-                            if (login.Contains(simbols[i]))
+                            if (value.Contains(simbols[i]))
                             {
                                 flag = true;
                                 break;
@@ -66,9 +66,9 @@ namespace Authorization
                             login = value + "@gmail.com";
                     }
                     else
-                        flag = true;    
-                        
-                    if(flag) login = "undefinded";
+                        flag = true;
+
+                    if (flag) login = "undefinded";
                 }
             }
 
@@ -81,35 +81,35 @@ namespace Authorization
                 set
                 {
                     bool flag = false;
-                    if (password.Length >= 8 && password.Length <= 16)
+                    if (value.Length >= 8 && value.Length <= 16)
                     {
-                        flag = true;   
+                        flag = true;
                         string simbols = "-;%&*()!#$^~";
                         string nums = "01234567890";
                         string alphUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
                         foreach (var item in simbols)
-                            if(password.Contains(item))
+                            if (value.Contains(item))
                             {
                                 flag = false;
                                 break;
                             }
-                        
-                        if(flag)
+
+                        if (flag)
                         {
                             flag = false;
                             foreach (var item in nums)
-                                if(password.Contains(item))
+                                if (value.Contains(item))
                                 {
                                     flag = true;
                                     break;
                                 }
-                            
-                            if(flag)
+
+                            if (flag)
                             {
-                                flag=false; 
+                                flag = false;
                                 foreach (var item in alphUpper)
-                                    if(password.Contains(item))
+                                    if (value.Contains(item))
                                     {
                                         flag = true;
                                         break;
@@ -128,24 +128,27 @@ namespace Authorization
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult res = MessageBoxResult.Yes;
-
+            bool flag = false;
             foreach (var item in accounts)
             {
-                if(LoginField.Text == item.Login)
+                if (LoginField.Text == item.Login)
                 {
-                    if(PasswordField.Password == item.Password)
-            {
-                MessageBox.Show("Succesfully", "Authorization", MessageBoxButton.OK);
+                    if (PasswordField.Password == item.Password)
+                    {
+                        MessageBox.Show("Succesfully", "Authorization", MessageBoxButton.OK);
+                        flag = true;
+                    }
+                }
             }
-            else
+
+            if (!flag)
             {
-                res = MessageBox.Show("Unsuccessfully\nTry again", "Authorization", MessageBoxButton.YesNo);
+                MessageBoxResult res = MessageBox.Show("Unsuccessfully\nTry again", "Authorization", MessageBoxButton.YesNo);
 
                 if (res == MessageBoxResult.Yes)
                 {
-                    Login.Text = "";
-                    Password.Password = "";
+                    LoginField.Text = "";
+                    PasswordField.Password = "";
                 }
                 else
                 {
@@ -156,7 +159,39 @@ namespace Authorization
 
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (LoginField.Text == "" || PasswordField.Password == "")
+            {
+                MessageBox.Show("Unsuccesfully", "Registration", MessageBoxButton.OK);
+            }
+            else
+            {
+                Account newAcc = new Account(LoginField.Text, PasswordField.Password);
 
+                if (newAcc.Login == "undefinded" && newAcc.Password == "000")
+                {
+                    MessageBox.Show("Login or Password Validation Error", "Registration", MessageBoxButton.OK);
+                }
+                else
+                {
+                    bool alreadyRegistered = false;
+                    foreach (var item in accounts)
+                    {
+                        if (LoginField.Text == item.Login)
+                        {
+                            MessageBox.Show("This account is already registered", "Registration", MessageBoxButton.OK);
+                            alreadyRegistered = true;
+                            break;
+                        }
+                    }
+
+                    if (!alreadyRegistered)
+                    {
+                        accounts.Add(newAcc);
+                    }
+                }
+
+
+            }
         }
     }
 }
