@@ -54,7 +54,7 @@ namespace Authorization
                     else
                         flag = true;
 
-                    if (login.Length > 4 && login.Length < 16)
+                    if (login.Length >= 4 && login.Length <= 16)
                     {
                         string simbols = "-;%&*()!#$^~";
                         for (int i = 0; i < simbols.Length; i++)
@@ -81,7 +81,47 @@ namespace Authorization
                 }
                 set
                 {
-                    password = value;
+                    bool flag = false;
+                    if (password.Length >= 8 && password.Length <= 16)
+                    {
+                        flag = true;   
+                        string simbols = "-;%&*()!#$^~";
+                        string nums = "01234567890";
+                        string alphUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+                        foreach (var item in simbols)
+                            if(password.Contains(item))
+                            {
+                                flag = false;
+                                break;
+                            }
+                        
+                        if(flag)
+                        {
+                            flag = false;
+                            foreach (var item in nums)
+                                if(password.Contains(item))
+                                {
+                                    flag = true;
+                                    break;
+                                }
+                            
+                            if(flag)
+                            {
+                                flag=false; 
+                                foreach (var item in alphUpper)
+                                    if(password.Contains(item))
+                                    {
+                                        flag = true;
+                                        break;
+                                    }
+                            }
+                        }
+                    }
+                    if (flag)
+                        password = value;
+                    else
+                        password = "000";
                 }
             }
         }
