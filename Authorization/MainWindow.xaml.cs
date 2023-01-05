@@ -169,10 +169,6 @@ namespace Authorization
 
                 if (newAcc.Login == "undefinded" && newAcc.Password == "000")
                 {
-                    MessageBox.Show("Login or Password Validation Error", "Registration", MessageBoxButton.OK);
-                }
-                else
-                {
                     bool alreadyRegistered = false;
                     foreach (var item in accounts)
                     {
