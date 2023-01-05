@@ -117,8 +117,6 @@ namespace Authorization
                             }
                         }
                     }
-                    if (flag)
-                        password = value;
                     else
                         password = "000";
                 }
