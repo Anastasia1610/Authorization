@@ -133,7 +133,7 @@ namespace Authorization
             {
                 if (LoginField.Text == item.Login)
                 {
-                    if (PasswordField.Password == item.Password)
+                    if (PasswordField.Password.ToString() == item.Password)
                     {
                         MessageBox.Show("Succesfully", "Authorization", MessageBoxButton.OK);
                         flag = true;
@@ -176,7 +176,7 @@ namespace Authorization
                     bool alreadyRegistered = false;
                     foreach (var item in accounts)
                     {
-                        if (LoginField.Text == item.Login)
+                        if (LoginField.Text.ToString() == item.Login.ToString())
                         {
                             MessageBox.Show("This account is already registered", "Registration", MessageBoxButton.OK);
                             alreadyRegistered = true;
@@ -187,6 +187,9 @@ namespace Authorization
                     if (!alreadyRegistered)
                     {
                         accounts.Add(newAcc);
+                        MessageBox.Show("This account successfuly regastered", "Registration", MessageBoxButton.OK);
+                        LoginField.Text = "";
+                        PasswordField.Password = "";
                     }
                 }
 
