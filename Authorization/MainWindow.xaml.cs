@@ -188,8 +188,6 @@ namespace Authorization
                         PasswordField.Password = "";
                     }
                 }
-
-
             }
         }
     }
